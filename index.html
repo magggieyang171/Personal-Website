@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lovebirds With Knives — Author Portfolio</title>
+  <meta name="description" content="An author showcase for books, characters, goals, and behind-the-scenes notes." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root { --ink:#202b26; --muted:#68756e; --cream:#f8f4ec; --paper:#fffdf8; --sage:#a9ba9f; --dark-sage:#657b67; --coral:#e8886e; --line:#dce4d8; }
+    * { box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body { margin:0; color:var(--ink); background:var(--cream); font:16px/1.6 'DM Sans',sans-serif; }
+    a { color:inherit; text-decoration:none; }
+    .wrap { width:min(1120px, calc(100% - 40px)); margin:auto; }
+    nav { position:sticky; top:0; z-index:10; background:rgba(248,244,236,.9); backdrop-filter:blur(14px); border-bottom:1px solid rgba(32,43,38,.08); }
+    nav .wrap { height:76px; display:flex; align-items:center; justify-content:space-between; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:700; letter-spacing:.02em; }
+    .brand-mark { width:35px; height:35px; border-radius:50% 50% 50% 8px; background:var(--coral); transform:rotate(-12deg); display:grid; place-items:center; color:white; font-family:Georgia,serif; font-size:21px; }
+    .links { display:flex; gap:27px; color:var(--muted); font-size:14px; font-weight:600; }
+    .links a:hover { color:var(--coral); }
+    .menu { display:none; background:none; border:0; font-size:24px; }
+    .hero { min-height:650px; display:grid; grid-template-columns:1.05fr .95fr; gap:50px; align-items:center; padding:76px 0 90px; }
+    .eyebrow { color:var(--coral); text-transform:uppercase; letter-spacing:.15em; font-size:12px; font-weight:700; }
+    h1,h2,h3 { font-family:'Playfair Display',Georgia,serif; line-height:1.1; margin:0; }
+    h1 { font-size:clamp(48px, 6vw, 82px); max-width:670px; margin:16px 0 24px; letter-spacing:-.04em; }
+    h1 em, h2 em { color:var(--dark-sage); font-weight:600; }
+    .hero p { color:var(--muted); max-width:500px; font-size:18px; }
+    .actions { display:flex; gap:14px; margin-top:30px; flex-wrap:wrap; }
+    .button { padding:13px 21px; border-radius:30px; border:1px solid var(--ink); font-weight:700; font-size:14px; transition:.2s; }
+    .button.primary { background:var(--ink); color:white; }
+    .button:hover { transform:translateY(-2px); box-shadow:0 8px 18px rgba(32,43,38,.12); }
+    .hero-art { position:relative; min-height:435px; display:grid; place-items:center; }
+    .blob { position:absolute; width:380px; height:380px; background:var(--sage); border-radius:48% 52% 50% 42%; transform:rotate(-17deg); }
+    .book { position:relative; width:235px; height:335px; background:#d87f67; color:#fffaf0; border-radius:5px 14px 14px 5px; padding:37px 30px; box-shadow:-14px 15px 0 #a9b99f, 20px 28px 35px rgba(47,62,49,.18); transform:rotate(7deg); }
+    .book:before { content:''; position:absolute; inset:0 auto 0 17px; width:1px; background:rgba(255,255,255,.35); }
+    .book .small { font-size:10px; text-transform:uppercase; letter-spacing:.2em; }
+    .book strong { display:block; font:700 38px/1.05 'Playfair Display',serif; margin:40px 0 20px; }
+    .book .author { position:absolute; bottom:28px; font-size:12px; letter-spacing:.1em; text-transform:uppercase; }
+    section { padding:100px 0; }
+    .section-head { display:flex; justify-content:space-between; align-items:end; gap:30px; margin-bottom:42px; }
+    h2 { font-size:clamp(36px,5vw,56px); letter-spacing:-.03em; }
+    .section-head p { max-width:410px; color:var(--muted); margin:0; }
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+    .portrait { min-height:330px; border-radius:18px; background:linear-gradient(145deg,#d2dfce,#9db39b); position:relative; overflow:hidden; }
+    .portrait:after { content:'✦'; position:absolute; font-size:210px; color:rgba(255,255,255,.27); right:26px; bottom:-45px; }
+    .note { background:var(--paper); padding:35px; border-radius:18px; box-shadow:0 14px 40px rgba(54,66,54,.06); }
+    .note p { color:var(--muted); }
+    .quote { font:italic 24px/1.35 'Playfair Display',serif; color:var(--dark-sage); margin:25px 0 0; }
+    .book-section { background:#e8eee4; }
+    .book-detail { display:grid; grid-template-columns:270px 1fr; gap:58px; align-items:center; }
+    .cover { height:380px; width:270px; background:#df8a72; border-radius:8px 16px 16px 8px; color:white; padding:42px 34px; box-shadow:14px 18px 0 #9faf99; }
+    .cover strong { display:block; font:700 45px/1.02 'Playfair Display',serif; margin-top:62px; }
+    .cover span { display:block; margin-top:22px; font-size:12px; text-transform:uppercase; letter-spacing:.16em; }
+    .chips { display:flex; gap:9px; flex-wrap:wrap; margin:22px 0; }
+    .chip { border:1px solid #bccbb7; border-radius:20px; padding:5px 12px; color:var(--dark-sage); font-size:12px; font-weight:600; }
+    .characters { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+    .character { background:var(--paper); border-radius:16px; overflow:hidden; border:1px solid var(--line); transition:.2s; }
+    .character:hover { transform:translateY(-5px); }
+    .avatar { height:185px; display:grid; place-items:center; font:70px 'Playfair Display',serif; color:white; }
+    .avatar.one { background:#9cae99; }.avatar.two { background:#d98c75; }.avatar.three { background:#8198a0; }
+    .character-copy { padding:20px 22px 24px; }.character-copy h3 { font-size:25px; }.character-copy p { color:var(--muted); font-size:14px; }
+    .teaser { background:var(--ink); color:white; border-radius:20px; padding:52px 58px; display:grid; grid-template-columns:1fr auto; gap:30px; align-items:center; }
+    .teaser h2 { color:white; }.teaser h2 em { color:#bad0b3; }.teaser p { color:#bec9c0; max-width:530px; }
+    .teaser .button { border-color:#d3e0d0; color:white; }
+    .goals { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }.goal { background:var(--paper); padding:26px; border-radius:15px; }.number { color:var(--coral); font-weight:700; font-size:13px; }.goal h3 { font-size:23px; margin:15px 0 8px; }.goal p { color:var(--muted); font-size:14px; margin:0; }
+    .suggest { background:#dfeadd; }.form { display:grid; grid-template-columns:1fr 1fr; gap:15px; max-width:730px; }.form input,.form textarea { border:1px solid #becdb9; background:rgba(255,255,255,.55); border-radius:10px; padding:14px 16px; font:inherit; color:var(--ink); outline:none; }.form input:focus,.form textarea:focus { border-color:var(--coral); }.form textarea { grid-column:1/-1; min-height:125px; resize:vertical; }.form .button { width:max-content; cursor:pointer; }
+    footer { padding:34px 0; font-size:13px; color:var(--muted); }.footer-inner { display:flex; justify-content:space-between; gap:20px; }
+    @media(max-width:760px) { .links { display:none; }.menu { display:block; }.hero { grid-template-columns:1fr; padding-top:55px; }.hero-art { min-height:390px; }.blob { width:310px; height:310px; }.book-detail,.about-grid { grid-template-columns:1fr; gap:35px; }.cover { margin:auto; }.characters,.goals { grid-template-columns:1fr; }.teaser { grid-template-columns:1fr; padding:35px 28px; }.section-head { display:block; }.section-head p { margin-top:16px; }.form { grid-template-columns:1fr; }.form textarea { grid-column:auto; }.footer-inner { display:block; }.footer-inner p:last-child { margin-top:8px; } }
+  </style>
+</head>
+<body>
+  <nav><div class="wrap"><a class="brand" href="#top"><span class="brand-mark">✦</span> Between the Lines</a><div class="links"><a href="#about">About</a><a href="#book">The Book</a><a href="#characters">Characters</a><a href="#suggestions">Suggestions</a></div><button class="menu" aria-label="Open navigation">☰</button></div></nav>
+  <main id="top">
+    <header class="hero wrap"><div><div class="eyebrow">Author · Dreamer · Storyteller</div><h1>Stories grow in the quiet <em>spaces.</em></h1><p>Welcome to my little corner of the world — where unfinished ideas become unforgettable journeys.</p><div class="actions"><a class="button primary" href="#book">Explore the book</a><a class="button" href="#about">Meet the author</a></div></div><div class="hero-art"><div class="blob"></div><div class="book"><span class="small">A novel</span><strong>Lovebirds<br>With Knives</strong><span class="author">by Maggie Yang</span></div></div></header>
+    <section id="about"><div class="wrap about-grid"><div class="portrait"></div><div class="note"><div class="eyebrow">A note from the author</div><h2>Hi, I'm <em>Maggie.</em></h2><p>I write about brave hearts, hidden places, and the little choices that change everything. When I’m not writing, you’ll find me collecting old maps, drinking too much tea, and looking for stories in ordinary moments.</p><p class="quote">“Every story begins with a question we’re brave enough to ask.”</p></div></div></section>
+    <section id="book" class="book-section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Coming soon</div><h2>Meet <em>Lovebirds With Knives</em></h2></div><p>A tender fantasy about finding your way home when the stars go dark.</p></div><div class="book-detail"><div class="cover"><span>A novel</span><strong>Lovebirds<br>With Knives</strong><span>Maggie Yang</span></div><div><h3>A light can be small and still lead you home.</h3><p>In the cliffside village of Bellwether, every home keeps a lantern burning for the lost. When seventeen-year-old Elian discovers the final lantern is fading, she must cross the forbidden forest to find the flame that started them all.</p><div class="chips"><span class="chip">Young adult fantasy</span><span class="chip">Found family</span><span class="chip">A little magic</span></div><a class="button primary" href="#sneak-peek">Read a sneak peek ↓</a></div></div></div></section>
+    <section id="characters"><div class="wrap"><div class="section-head"><div><div class="eyebrow">The people within</div><h2>Characters with <em>secrets.</em></h2></div><p>Every good adventure is shaped by the people we meet along the way.</p></div><div class="characters"><article class="character"><div class="avatar two">S</div><div class="character-copy"><h3>Solace</h3><p>Loving, caring, and everything you’d want — someone you’d choose in every life and every memory.</p></div></article><article class="character"><div class="avatar three">S</div><div class="character-copy"><h3>Sylvia</h3><p>A little lovable liar who’ll melt your heart with every line and bring a wonderfully unique personality.</p></div></article></div></div></section>
+    <section id="sneak-peek" class="wrap"><div class="teaser"><div><div class="eyebrow">A tiny window into the story</div><h2>“Then, I met his eyes...”</h2><p>It was a casual day at school. I was walking around campus like any other day. My eyes wandered but made a pit stop at someone. With a knife. The knife spoke to me, almost as if it was telling me he was dangerous. Then, I met his eyes...</p></div><a class="button" href="#suggestions">Tell me what you think</a></div></section>
+    <section><div class="wrap"><div class="section-head"><div><div class="eyebrow">Beyond the first draft</div><h2>What I’m <em>working toward.</em></h2></div></div><div class="goals"><div class="goal"><span class="number">01 / NOW</span><h3>Finish the manuscript</h3><p>Give this story the ending it deserves, one page at a time.</p></div><div class="goal"><span class="number">02 / NEXT</span><h3>Find its readers</h3><p>Build a community of curious, kind people who love a good adventure.</p></div><div class="goal"><span class="number">03 / ALWAYS</span><h3>Keep telling stories</h3><p>Make room for wonder, even on the busiest days.</p></div></div></div></section>
+    <section id="suggestions" class="suggest"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Your turn</div><h2>Leave a <em>thought.</em></h2></div><p>Have a character question, a reading suggestion, or a word of encouragement? I’d love to hear it.</p></div><form class="form" onsubmit="event.preventDefault(); document.querySelector('.thanks').hidden=false; this.reset();"><input required placeholder="Your name" aria-label="Your name"><input type="email" required placeholder="Email address" aria-label="Email address"><textarea required placeholder="Write your message..." aria-label="Your message"></textarea><button class="button primary" type="submit">Send a note →</button><p class="thanks" hidden>Thank you — your note is tucked safely between the lines ✦</p></form></div></section>
+  </main>
+  <footer><div class="wrap footer-inner"><p>© 2026 Maggie Yang. Made with stories.</p><p>Instagram · Goodreads · Newsletter</p></div></footer>
+  <script>document.querySelector('.menu').addEventListener('click',()=>document.querySelector('.links').classList.toggle('open'));</script>
+</body>
+</html>
