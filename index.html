@@ -55,20 +55,50 @@
     .cover strong { display:block; font:700 45px/1.02 'Playfair Display',serif; margin-top:62px; }
     .cover span { display:block; margin-top:22px; font-size:12px; text-transform:uppercase; letter-spacing:.16em; }
     .chips { display:flex; gap:9px; flex-wrap:wrap; margin:22px 0; }
-    .chip { border:1px solid #bccbb7; border-radius:20px; padding:5px 12px; color:var(--dark-sage); font-size:12px; font-weight:600; }
+    .chips { overflow:hidden; padding:5px 2px; }
+    .chip { border:1px solid #bccbb7; border-radius:20px; padding:5px 12px; color:var(--dark-sage); font-size:12px; font-weight:600; display:inline-block; vertical-align:middle; animation:chipFloat 2s ease-in-out infinite; }
+    .chip:nth-child(2) { animation-delay:-1.6s; }.chip:nth-child(3) { animation-delay:-3.2s; }
+    @keyframes chipFloat { 0%,100% { transform:translate(0,0); } 50% { transform:translate(7px,-4px); } }
     .characters { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
     .character { background:var(--paper); border-radius:16px; overflow:hidden; border:1px solid var(--line); transition:.2s; }
+    .character { width:100%; padding:0; text-align:left; font:inherit; color:inherit; cursor:pointer; }
     .character:hover { transform:translateY(-5px); }
     .avatar { height:185px; display:grid; place-items:center; font:70px 'Playfair Display',serif; color:white; }
     .avatar.one { background:#9cae99; }.avatar.two { background:#d98c75; }.avatar.three { background:#8198a0; }
+    .portrait-icon { position:relative; width:96px; height:112px; margin-top:28px; border-radius:48% 48% 42% 42%; background:#f4c7a7; box-shadow:0 8px 0 rgba(32,43,38,.08); }
+    .portrait-icon:before { content:''; position:absolute; z-index:1; top:-18px; left:-15px; width:126px; height:82px; border-radius:52% 52% 34% 34%; }
+    .portrait-icon:after { content:'⌣'; position:absolute; z-index:2; left:35px; top:58px; color:#8d5149; font:26px/1 Georgia,serif; transform:rotate(180deg); }
+    .portrait-icon.solace:before { background:#8a5035; clip-path:polygon(4% 34%,18% 7%,34% 18%,49% 0,62% 19%,82% 5%,98% 34%,90% 63%,75% 48%,62% 67%,45% 46%,27% 64%,12% 48%); }
+    .portrait-icon.sylvia { height:116px; }
+    .portrait-icon.sylvia:before { top:-26px; left:-28px; width:152px; height:158px; border-radius:48% 48% 35% 35%; background:linear-gradient(90deg,#3d2825 0 70%,#d7ae5e 70% 77%,#4a3029 77%); clip-path:polygon(0 0,100% 0,100% 100%,78% 91%,68% 100%,55% 88%,41% 100%,27% 89%,13% 100%,0 91%); }
+    .portrait-icon.sylvia:after { top:61px; }
+    .portrait-photo { width:100%; height:185px; object-fit:cover; object-position:center 28%; display:block; }
+    .profile-photo { width:100%; height:100%; object-fit:cover; object-position:center 56%; display:block; }
+    .character-photo { width:100%; height:185px; object-fit:cover; object-position:center 56%; display:block; }
+    .cover-image { width:100%; height:100%; object-fit:cover; display:block; border-radius:8px 16px 16px 8px; }
+    .cover-pair { display:flex; align-items:center; gap:18px; }
+    .cover-pair .cover { flex:0 0 270px; }
+    .cover-old { width:170px; height:245px; padding:25px 20px; background:#d87f67; color:#fffaf0; border-radius:6px 12px 12px 6px; box-shadow:8px 11px 0 #a9b99f; }
+    .cover-old strong { display:block; font:700 28px/1.05 'Playfair Display',serif; margin:42px 0 14px; }
+    .cover-old span { display:block; font-size:9px; text-transform:uppercase; letter-spacing:.14em; }
     .character-copy { padding:20px 22px 24px; }.character-copy h3 { font-size:25px; }.character-copy p { color:var(--muted); font-size:14px; }
+    .character:focus-visible { outline:3px solid var(--coral); outline-offset:4px; }
+    .profile-modal { position:fixed; inset:0; z-index:20; display:flex; align-items:center; justify-content:center; padding:20px; background:rgba(32,43,38,.55); }
+    .profile-modal[hidden] { display:none; }
+    .profile-card { width:min(520px,100%); position:relative; margin:0 auto; transform:translate(0,0); overflow:hidden; border-radius:22px; background:var(--paper); box-shadow:0 24px 70px rgba(20,30,24,.25); }
+    .profile-banner { height:280px; display:flex; align-items:center; justify-content:center; overflow:hidden; color:white; font:72px 'Playfair Display',serif; }
+    .profile-banner.solace { background:#d98c75; }.profile-banner.sylvia { background:#8198a0; }
+    .profile-content { padding:28px 30px 32px; }.profile-content h3 { font-size:34px; margin-bottom:8px; }.profile-content p { color:var(--muted); margin:8px 0 0; }
+    .profile-label { color:var(--coral); text-transform:uppercase; letter-spacing:.14em; font-size:11px; font-weight:700; }
+    .definition { display:block; margin-top:10px; color:var(--muted); font:italic 13px/1.5 Georgia,serif; }
+    .profile-close { position:absolute; top:14px; right:16px; width:34px; height:34px; border:0; border-radius:50%; background:rgba(255,255,255,.82); color:var(--ink); font-size:23px; cursor:pointer; }
     .teaser { background:var(--ink); color:white; border-radius:20px; padding:52px 58px; display:grid; grid-template-columns:1fr auto; gap:30px; align-items:center; }
     .teaser h2 { color:white; }.teaser h2 em { color:#bad0b3; }.teaser p { color:#bec9c0; max-width:530px; }
     .teaser .button { border-color:#d3e0d0; color:white; }
     .goals { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; }.goal { background:var(--paper); padding:26px; border-radius:15px; }.number { color:var(--coral); font-weight:700; font-size:13px; }.goal h3 { font-size:23px; margin:15px 0 8px; }.goal p { color:var(--muted); font-size:14px; margin:0; }
     .suggest { background:#dfeadd; }.form { display:grid; grid-template-columns:1fr 1fr; gap:15px; max-width:730px; }.form input,.form textarea { border:1px solid #becdb9; background:rgba(255,255,255,.55); border-radius:10px; padding:14px 16px; font:inherit; color:var(--ink); outline:none; }.form input:focus,.form textarea:focus { border-color:var(--coral); }.form textarea { grid-column:1/-1; min-height:125px; resize:vertical; }.form .button { width:max-content; cursor:pointer; }
     footer { padding:34px 0; font-size:13px; color:var(--muted); }.footer-inner { display:flex; justify-content:space-between; gap:20px; }
-    @media(max-width:760px) { .links { display:none; }.menu { display:block; }.hero { grid-template-columns:1fr; padding-top:55px; }.hero-art { min-height:390px; }.blob { width:310px; height:310px; }.book-detail,.about-grid { grid-template-columns:1fr; gap:35px; }.cover { margin:auto; }.characters,.goals { grid-template-columns:1fr; }.teaser { grid-template-columns:1fr; padding:35px 28px; }.section-head { display:block; }.section-head p { margin-top:16px; }.form { grid-template-columns:1fr; }.form textarea { grid-column:auto; }.footer-inner { display:block; }.footer-inner p:last-child { margin-top:8px; } }
+    @media(max-width:760px) { .links { display:none; }.menu { display:block; }.hero { grid-template-columns:1fr; padding-top:55px; }.hero-art { min-height:390px; }.blob { width:310px; height:310px; }.book-detail,.about-grid { grid-template-columns:1fr; gap:35px; }.cover { margin:auto; }.characters,.goals { grid-template-columns:1fr; }.teaser { grid-template-columns:1fr; padding:35px 28px; }.section-head { display:block; }.section-head p { margin-top:16px; }.form { grid-template-columns:1fr; }.form textarea { grid-column:auto; }.footer-inner { display:block; }.footer-inner p:last-child { margin-top:8px; }.profile-banner { height:235px; } }
   </style>
 </head>
 <body>
@@ -76,13 +106,46 @@
   <main id="top">
     <header class="hero wrap"><div><div class="eyebrow">Author · Dreamer · Storyteller</div><h1>Stories grow in the quiet <em>spaces.</em></h1><p>Welcome to my little corner of the world — where unfinished ideas become unforgettable journeys.</p><div class="actions"><a class="button primary" href="#book">Explore the book</a><a class="button" href="#about">Meet the author</a></div></div><div class="hero-art"><div class="blob"></div><div class="book"><span class="small">A novel</span><strong>Lovebirds<br>With Knives</strong><span class="author">by Maggie Yang</span></div></div></header>
     <section id="about"><div class="wrap about-grid"><div class="portrait"></div><div class="note"><div class="eyebrow">A note from the author</div><h2>Hi, I'm <em>Maggie.</em></h2><p>I write about brave hearts, hidden places, and the little choices that change everything. When I’m not writing, you’ll find me collecting old maps, drinking too much tea, and looking for stories in ordinary moments.</p><p class="quote">“Every story begins with a question we’re brave enough to ask.”</p></div></div></section>
-    <section id="book" class="book-section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Coming soon</div><h2>Meet <em>Lovebirds With Knives</em></h2></div><p>A tender fantasy about finding your way home when the stars go dark.</p></div><div class="book-detail"><div class="cover"><span>A novel</span><strong>Lovebirds<br>With Knives</strong><span>Maggie Yang</span></div><div><h3>A light can be small and still lead you home.</h3><p>In the cliffside village of Bellwether, every home keeps a lantern burning for the lost. When seventeen-year-old Elian discovers the final lantern is fading, she must cross the forbidden forest to find the flame that started them all.</p><div class="chips"><span class="chip">Young adult fantasy</span><span class="chip">Found family</span><span class="chip">A little magic</span></div><a class="button primary" href="#sneak-peek">Read a sneak peek ↓</a></div></div></div></section>
-    <section id="characters"><div class="wrap"><div class="section-head"><div><div class="eyebrow">The people within</div><h2>Characters with <em>secrets.</em></h2></div><p>Every good adventure is shaped by the people we meet along the way.</p></div><div class="characters"><article class="character"><div class="avatar two">S</div><div class="character-copy"><h3>Solace</h3><p>Loving, caring, and everything you’d want — someone you’d choose in every life and every memory.</p></div></article><article class="character"><div class="avatar three">S</div><div class="character-copy"><h3>Sylvia</h3><p>A little lovable liar who’ll melt your heart with every line and bring a wonderfully unique personality.</p></div></article></div></div></section>
+    <section id="book" class="book-section"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Coming soon</div><h2>Meet <em>Lovebirds With Knives</em></h2></div><p>A tender fantasy about finding your way home when the stars go dark.</p></div><div class="book-detail"><div class="cover"><img class="cover-image" src="assets/book-cover.png" alt="Lovebirds With Knives book cover"></div><div><h3>Love Birds with Knives</h3><p><em>By Maggie Yang</em></p><p><strong>Some memories disappear. Some people never forget.</strong></p><p>Sylvia’s life seems ordinary enough until she meets Solace, a strange, funny boy with soft hazel eyes, messy chestnut hair, and a knife he carries as casually as someone peeling an orange.</p><p>There’s something about him that feels familiar. His voice, his habits, the places they visit together. Even the smallest moments leave Sylvia with an inexplicable sense of déjà vu, as though she’s living a life she’s somehow forgotten.</p><p>As the two grow closer, Sylvia finds herself falling for Solace. Their days fill with laughter, late-night conversations, inside jokes, and moments that feel strangely like memories. But beneath their growing romance lies a mystery neither of them seems willing to confront.</p><p>Sylvia knows that something was taken from her. Her memories. Her past. Perhaps even a part of who she used to be.</p><p>And Solace knows more than he’s letting on.</p><p>As fragments of the past begin to surface, Sylvia must uncover the truth behind her missing memories and the boy who seems to know her better than she knows herself. But some truths are painful, and remembering everything may not be the same as getting everything back.</p><p>Because sometimes, the hardest part of love isn’t finding someone.</p><div class="chips"><span class="chip">Teen - Young Adult</span><span class="chip">Romance - no spice nor explicit content</span><span class="chip">Romance / mystery / psychological thriller</span></div><a class="button primary" href="#sneak-peek">Read a sneak peek ↓</a></div></div></section>
+    <section id="characters"><div class="wrap"><div class="section-head"><div><div class="eyebrow">The people within</div><h2>Characters with <em>secrets.</em></h2></div><p>Every good adventure is shaped by the people we meet along the way.</p></div><div class="characters"><button class="character" type="button" data-profile="solace"><img class="character-photo" src="assets/solace-character.png" alt="Solace character portrait"><div class="character-copy"><h3>Solace</h3><p>Solace is the solace im Sylvia's life.<span class="definition"><strong>solace</strong> <em>noun</em> — comfort or consolation in a time of sadness or distress.</span><span class="definition">The peerfect lover your love and remember forever in every memory and life.</span></p></div></button><button class="character" type="button" data-profile="sylvia"><img class="character-photo" src="assets/sylvia-character.png" alt="Sylvia character portrait"><div class="character-copy"><h3>Sylvia</h3><p>A little lovable liar who’ll melt your heart with every line and bring a wonderfully unique personality.</p></div></button></div></div></section>
     <section id="sneak-peek" class="wrap"><div class="teaser"><div><div class="eyebrow">A tiny window into the story</div><h2>“Then, I met his eyes...”</h2><p>It was a casual day at school. I was walking around campus like any other day. My eyes wandered but made a pit stop at someone. With a knife. The knife spoke to me, almost as if it was telling me he was dangerous. Then, I met his eyes...</p></div><a class="button" href="#suggestions">Tell me what you think</a></div></section>
     <section><div class="wrap"><div class="section-head"><div><div class="eyebrow">Beyond the first draft</div><h2>What I’m <em>working toward.</em></h2></div></div><div class="goals"><div class="goal"><span class="number">01 / NOW</span><h3>Finish the manuscript</h3><p>Give this story the ending it deserves, one page at a time.</p></div><div class="goal"><span class="number">02 / NEXT</span><h3>Find its readers</h3><p>Build a community of curious, kind people who love a good adventure.</p></div><div class="goal"><span class="number">03 / ALWAYS</span><h3>Keep telling stories</h3><p>Make room for wonder, even on the busiest days.</p></div></div></div></section>
-    <section id="suggestions" class="suggest"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Your turn</div><h2>Leave a <em>thought.</em></h2></div><p>Have a character question, a reading suggestion, or a word of encouragement? I’d love to hear it.</p></div><form class="form" onsubmit="event.preventDefault(); document.querySelector('.thanks').hidden=false; this.reset();"><input required placeholder="Your name" aria-label="Your name"><input type="email" required placeholder="Email address" aria-label="Email address"><textarea required placeholder="Write your message..." aria-label="Your message"></textarea><button class="button primary" type="submit">Send a note →</button><p class="thanks" hidden>Thank you — your note is tucked safely between the lines ✦</p></form></div></section>
+    <section id="suggestions" class="suggest"><div class="wrap"><div class="section-head"><div><div class="eyebrow">Your turn</div><h2>Leave a <em>thought.</em></h2></div><p>Have a character question, a reading suggestion, or a word of encouragement? I’d love to hear it.</p></div><form class="form" onsubmit="sendSuggestion(event)"><input id="suggestion-name" required placeholder="Your name" aria-label="Your name"><input id="suggestion-email" type="email" required placeholder="Email address" aria-label="Email address"><textarea id="suggestion-message" required placeholder="Write your message..." aria-label="Your message"></textarea><button class="button primary" type="submit">Send a note →</button><p class="thanks" hidden>Thank you — your note is tucked safely between the lines ✦</p></form></div></section>
+    <div class="profile-modal" id="profile-modal" hidden role="dialog" aria-modal="true" aria-labelledby="profile-name"><div class="profile-card"><button class="profile-close" type="button" aria-label="Close profile">×</button><div class="profile-banner" id="profile-banner"><div class="portrait-icon"></div></div><div class="profile-content"><div class="profile-label">Character profile</div><h3 id="profile-name"></h3><p id="profile-description"></p></div></div></div>
   </main>
   <footer><div class="wrap footer-inner"><p>© 2026 Maggie Yang. Made with stories.</p><p>Instagram · Goodreads · Newsletter</p></div></footer>
-  <script>document.querySelector('.menu').addEventListener('click',()=>document.querySelector('.links').classList.toggle('open'));</script>
+  <script>
+    document.querySelector('.menu').addEventListener('click',()=>document.querySelector('.links').classList.toggle('open'));
+    function sendSuggestion(event) {
+      event.preventDefault();
+      const name = document.querySelector('#suggestion-name').value.trim();
+      const email = document.querySelector('#suggestion-email').value.trim();
+      const message = document.querySelector('#suggestion-message').value.trim();
+      const subject = encodeURIComponent(`Website suggestion from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=yangmaggie171@gmail.com&su=${subject}&body=${body}`, '_blank', 'noopener');
+      document.querySelector('.thanks').hidden = false;
+    }
+    const profiles = {
+      solace: { name: 'Solace', description: "Solace is the solace im Sylvia's life.", definition: 'solace — noun: comfort or consolation in a time of sadness or distress.', extra: 'The peerfect lover your love and remember forever in every memory and life.', image: 'assets/solace-character.png' },
+      sylvia: { name: 'Sylvia', description: 'A little lovable liar who’ll melt your heart with every line and bring a wonderfully unique personality.', image: 'assets/sylvia-character.png' }
+    };
+    const modal = document.querySelector('#profile-modal');
+    const banner = document.querySelector('#profile-banner');
+    document.querySelectorAll('[data-profile]').forEach(card => card.addEventListener('click', () => {
+      const profile = profiles[card.dataset.profile];
+      document.querySelector('#profile-name').textContent = profile.name;
+      document.querySelector('#profile-description').innerHTML = `${profile.description}<span class="definition">${profile.definition || ''}</span>${profile.extra ? `<span class="definition">${profile.extra}</span>` : ''}`;
+      banner.className = 'profile-banner';
+      banner.innerHTML = `<img class="profile-photo" src="${profile.image}" alt="${profile.name} character portrait">`;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+      document.querySelector('.profile-close').focus();
+    }));
+    function closeProfile() { modal.hidden = true; document.body.style.overflow = ''; }
+    document.querySelector('.profile-close').addEventListener('click', closeProfile);
+    modal.addEventListener('click', event => { if (event.target === modal) closeProfile(); });
+    document.addEventListener('keydown', event => { if (event.key === 'Escape') closeProfile(); });
+  </script>
 </body>
 </html>
